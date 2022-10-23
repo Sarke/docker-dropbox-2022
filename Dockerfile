@@ -33,7 +33,7 @@ RUN mkdir -p /opt/dropbox /opt/dropbox/.dropbox /opt/dropbox/Dropbox \
 
 # https://help.dropbox.com/installs-integrations/desktop/linux-repository
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FC918B335044912E \
- && add-apt-repository 'deb http://linux.dropbox.com/debian buster main' \
+ && add-apt-repository 'deb http://linux.dropbox.com/ubuntu disco main' \
  && apt-get update \
  && apt-get -qqy install dropbox \
  && apt-get -qqy autoclean \
