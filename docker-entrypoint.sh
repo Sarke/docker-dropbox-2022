@@ -116,3 +116,20 @@ while kill -0 ${DROPBOX_PID} 2> /dev/null; do
   /usr/bin/find /tmp/ -maxdepth 1 -type d -mtime +1 ! -path /tmp/ -exec rm -rf {} \;
   /bin/sleep ${POLLING_INTERVAL}
 done
+
+# if it restarted because of an update, make it the new default
+Latest=$(cat /opt/dropbox/.dropbox-dist/VERSION)
+Current=$(cat /opt/dropbox/bin/VERSION)
+echo "Latest   :" $Latest
+echo "Installed:" $Current
+if [ ! -z "${Latest}" ] && [ ! -z "${Current}" ] && [ $Current != $Latest ]; then
+  echo "Installing new version..."
+  rm -rf /opt/dropbox/bin/*
+  mv /opt/dropbox/.dropbox-dist/* /opt/dropbox/bin/
+  find /opt/dropbox/bin/ -type f -name "*.so" -exec chown ${DROPBOX_UID}:${DROPBOX_GID} {} \; -exec chmod a+rx {} \;
+  echo "Dropbox updated to v$Latest"
+else
+  echo "Dropbox is up-to-date"
+fi
+
+echo "Dropbox is exiting..."
