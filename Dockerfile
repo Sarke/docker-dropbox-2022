@@ -63,6 +63,15 @@ ARG VCS_REF=main
 ARG VERSION=""
 ARG BUILD_DATE=""
 
+# http://label-schema.org/rc1/
+LABEL org.label-schema.schema-version "1.0"
+LABEL org.label-schema.name           "Dropbox"
+LABEL org.label-schema.version        "${VERSION}"
+LABEL org.label-schema.build-date     "${BUILD_DATE}"
+LABEL org.label-schema.description    "Standalone Dropbox client"
+LABEL org.label-schema.vcs-url        "https://github.com/Sarke/docker-dropbox-2022"
+LABEL org.label-schema.vcs-ref        "${VCS_REF}"
+
 # Configurable sleep delay
 ENV POLLING_INTERVAL=5
 # Possibility to skip permission check
