@@ -99,6 +99,9 @@ umask 002
 echo "Using $(cat /etc/timezone) timezone ($(date +%H:%M:%S) local time)"
 dpkg-reconfigure --frontend noninteractive tzdata
 
+# fix deprecation
+sed -i s/isSet/is_set/ /usr/bin/dropbox
+
 # Start Dropbox
 echo "Starting dropboxd ($(cat /opt/dropbox/bin/VERSION))..."
 gosu dropbox "$@" & export DROPBOX_PID="$!"
