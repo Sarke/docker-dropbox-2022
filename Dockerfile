@@ -1,5 +1,4 @@
-# Based on Ubuntu 21.10
-FROM ubuntu:21.10
+FROM ubuntu:22.04
 
 # Maintainer
 LABEL maintainer "Alexander Graf <alex@otherguy.io>"
